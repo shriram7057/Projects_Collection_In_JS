@@ -1,0 +1,143 @@
+<!-- memory_game.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🧠 Memory Game</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        color: white;
+        text-align: center;
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+      }
+
+      #game {
+        display: grid;
+        grid-template-columns: repeat(4, 100px);
+        gap: 15px;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      button {
+        font-size: 35px;
+        width: 100px;
+        height: 100px;
+        background: white;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: transform 0.4s, background 0.3s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      button:hover {
+        transform: scale(1.05);
+      }
+
+      button.flipped {
+        background: #ffd700;
+        transform: rotateY(180deg);
+      }
+
+      #score {
+        font-size: 1.3em;
+        margin-top: 15px;
+      }
+
+      #reset {
+        background: #ff4081;
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 20px;
+        font-size: 1em;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: background 0.3s;
+      }
+
+      #reset:hover {
+        background: #e91e63;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🧠 Memory Game</h1>
+    <div id="game"></div>
+    <div id="score">Score: 0</div>
+    <button id="reset">🔁 Restart Game</button>
+
+    <script>
+      const emojis = ["🍎", "🍌", "🍇", "🍉", "🍎", "🍌", "🍇", "🍉"];
+      let shuffled = [];
+      let first = null,
+        lock = false,
+        score = 0;
+
+      const game = document.getElementById("game");
+      const scoreDisplay = document.getElementById("score");
+      const resetBtn = document.getElementById("reset");
+
+      function startGame() {
+        game.innerHTML = "";
+        shuffled = [...emojis].sort(() => Math.random() - 0.5);
+        score = 0;
+        scoreDisplay.textContent = "Score: " + score;
+
+        shuffled.forEach((emoji) => {
+          const btn = document.createElement("button");
+          btn.textContent = "?";
+
+          btn.onclick = function () {
+            if (lock || btn.classList.contains("flipped")) return;
+
+            btn.textContent = emoji;
+            btn.classList.add("flipped");
+
+            if (!first) {
+              first = btn;
+            } else {
+              if (first.textContent === emoji && first !== btn) {
+                score++;
+                scoreDisplay.textContent = "Score: " + score;
+                first = null;
+                if (score === emojis.length / 2) {
+                  setTimeout(() => alert("🎉 You won!"), 300);
+                }
+              } else {
+                lock = true;
+                setTimeout(() => {
+                  first.textContent = "?";
+                  btn.textContent = "?";
+                  first.classList.remove("flipped");
+                  btn.classList.remove("flipped");
+                  first = null;
+                  lock = false;
+                }, 700);
+              }
+            }
+          };
+
+          game.appendChild(btn);
+        });
+      }
+
+      resetBtn.onclick = startGame;
+      startGame();
+    </script>
+  </body>
+</html>

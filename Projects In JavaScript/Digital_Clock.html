@@ -1,0 +1,21 @@
+<!-- digital_clock.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🕒 Digital Clock</title>
+  <style>
+    body { text-align:center; font-family:sans-serif; background:#0a0a0a; color:rgb(0, 255, 242); font-size:50px; }
+  </style>
+</head>
+<body>
+  <h1 id="clock"></h1>
+  <script>
+    function showTime() {
+      const time = new Date().toLocaleTimeString();
+      document.getElementById("clock").textContent = time;
+    }
+    setInterval(showTime, 1000);
+  </script>
+</body>
+</html>

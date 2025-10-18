@@ -1,0 +1,132 @@
+<!-- typing_test.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>⌨️ Typing Speed Test</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #74ebd5, #acb6e5);
+        color: #333;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      h1 {
+        margin-bottom: 10px;
+        color: #222;
+      }
+
+      #sentence {
+        font-size: 1.4em;
+        background: white;
+        padding: 15px 25px;
+        border-radius: 10px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        margin-bottom: 20px;
+        max-width: 80%;
+      }
+
+      input {
+        width: 70%;
+        padding: 12px;
+        font-size: 1.1em;
+        border: 2px solid #888;
+        border-radius: 8px;
+        outline: none;
+        transition: border-color 0.3s, box-shadow 0.3s;
+      }
+
+      input:focus {
+        border-color: #4caf50;
+        box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
+      }
+
+      #result {
+        font-size: 1.2em;
+        margin-top: 15px;
+      }
+
+      #restart {
+        margin-top: 25px;
+        padding: 10px 20px;
+        border: none;
+        background: #ff4081;
+        color: white;
+        border-radius: 20px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      #restart:hover {
+        background: #e91e63;
+      }
+
+      .correct {
+        color: green;
+      }
+
+      .incorrect {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>⌨️ Typing Speed Test</h1>
+    <p id="sentence">JavaScript makes web fun!</p>
+    <input
+      id="input"
+      placeholder="Start typing here..."
+      oninput="checkTyping()"
+    />
+    <p id="result"></p>
+    <button id="restart" onclick="restartTest()">🔁 Restart</button>
+
+    <script>
+      let start = null;
+      const sentence = document.getElementById("sentence");
+      const input = document.getElementById("input");
+      const result = document.getElementById("result");
+
+      function checkTyping() {
+        const val = input.value;
+        if (!start && val.length > 0) start = new Date();
+
+        // Color feedback for correctness
+        if (sentence.textContent.startsWith(val)) {
+          input.style.borderColor = "#4CAF50";
+        } else {
+          input.style.borderColor = "red";
+        }
+
+        if (val === sentence.textContent) {
+          let time = (new Date() - start) / 1000;
+          let words = sentence.textContent.split(" ").length;
+          let wpm = Math.round((words / time) * 60);
+          result.innerHTML = `✅ Done!<br>Time: <b>${time.toFixed(
+            2
+          )}s</b><br>Speed: <b>${wpm} WPM</b>`;
+          input.disabled = true;
+          input.style.borderColor = "#4CAF50";
+        }
+      }
+
+      function restartTest() {
+        input.value = "";
+        input.disabled = false;
+        input.style.borderColor = "#888";
+        result.textContent = "";
+        start = null;
+        input.focus();
+      }
+    </script>
+  </body>
+</html>

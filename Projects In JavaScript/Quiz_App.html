@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>❓ Interactive Quiz</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #f6d365, #fda085);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .quiz-box {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        width: 360px;
+        padding: 25px;
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .quiz-box:hover {
+        transform: scale(1.02);
+      }
+
+      h2 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .options button {
+        width: 100%;
+        background: #e0e0e0;
+        border: none;
+        padding: 12px;
+        border-radius: 10px;
+        font-size: 16px;
+        margin: 8px 0;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .options button:hover {
+        background: #d4d4d4;
+      }
+
+      .correct {
+        background: #55efc4 !important;
+        color: #fff;
+      }
+
+      .wrong {
+        background: #ff7675 !important;
+        color: #fff;
+      }
+
+      #nextBtn {
+        background: #0984e3;
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-top: 15px;
+        font-size: 16px;
+        transition: 0.2s;
+      }
+
+      #nextBtn:hover {
+        background: #0652dd;
+      }
+
+      #score {
+        margin-top: 15px;
+        font-weight: bold;
+        color: #222;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="quiz-box">
+      <h2 id="question"></h2>
+      <div id="options" class="options"></div>
+      <button id="nextBtn" onclick="next()">Next</button>
+      <div id="score"></div>
+    </div>
+
+    <script>
+      const quiz = [
+        { q: "JS stands for?", o: ["Java Source", "JavaScript", "JSON"], a: 1 },
+        {
+          q: "Which is not a JS type?",
+          o: ["String", "Number", "Float"],
+          a: 2,
+        },
+        {
+          q: "HTML stands for?",
+          o: [
+            "HyperText Markup Language",
+            "Hyper Tool Multi Language",
+            "Home Tool Markup Language",
+          ],
+          a: 0,
+        },
+      ];
+
+      let i = 0;
+      let score = 0;
+
+      function show() {
+        document.getElementById("question").textContent = quiz[i].q;
+        document.getElementById("options").innerHTML = quiz[i].o
+          .map(
+            (opt, idx) =>
+              `<button onclick='check(${idx}, this)'>${opt}</button>`
+          )
+          .join("");
+        document.getElementById(
+          "score"
+        ).textContent = `Score: ${score}/${quiz.length}`;
+      }
+
+      function check(idx, btn) {
+        const buttons = document.querySelectorAll(".options button");
+        buttons.forEach((b) => (b.disabled = true));
+
+        if (idx === quiz[i].a) {
+          btn.classList.add("correct");
+          score++;
+        } else {
+          btn.classList.add("wrong");
+          buttons[quiz[i].a].classList.add("correct");
+        }
+
+        document.getElementById(
+          "score"
+        ).textContent = `Score: ${score}/${quiz.length}`;
+      }
+
+      function next() {
+        i++;
+        if (i < quiz.length) {
+          show();
+        } else {
+          document.querySelector(".quiz-box").innerHTML = `
+          <h2>🎉 Quiz Completed!</h2>
+          <p>Your final score is <strong>${score}/${quiz.length}</strong></p>
+          <button onclick="restart()">Restart</button>
+        `;
+        }
+      }
+
+      function restart() {
+        i = 0;
+        score = 0;
+        document.querySelector(".quiz-box").innerHTML = `
+        <h2 id="question"></h2>
+        <div id="options" class="options"></div>
+        <button id="nextBtn" onclick="next()">Next</button>
+        <div id="score"></div>
+      `;
+        show();
+      }
+
+      show();
+    </script>
+  </body>
+</html>

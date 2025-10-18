@@ -1,0 +1,112 @@
+<!-- color_flipper.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🎨 Color Flipper</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        text-align: center;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: background 0.8s;
+        margin: 0;
+      }
+
+      h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+        color: #222;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+      }
+
+      button {
+        padding: 12px 25px;
+        font-size: 1.2em;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        background: #4caf50;
+        color: white;
+        transition: transform 0.2s, background 0.3s;
+      }
+
+      button:hover {
+        transform: scale(1.05);
+        background: #45a049;
+      }
+
+      #color {
+        margin-top: 20px;
+        font-size: 1.5em;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.6);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: background 0.5s, color 0.5s;
+      }
+
+      #gradientToggle {
+        margin-top: 15px;
+        padding: 8px 20px;
+        font-size: 1em;
+        border-radius: 20px;
+        border: none;
+        background: #ff4081;
+        color: white;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      #gradientToggle:hover {
+        background: #e91e63;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>🎨 Background Color Changer</h2>
+    <button onclick="flip()">Flip Color</button>
+    <h3 id="color">#ffffff</h3>
+    <button id="gradientToggle" onclick="toggleGradient()">
+      Toggle Gradient Mode
+    </button>
+
+    <script>
+      let gradientMode = false;
+
+      function flip() {
+        if (gradientMode) {
+          const color1 = randomColor();
+          const color2 = randomColor();
+          document.body.style.background = `linear-gradient(135deg, ${color1}, ${color2})`;
+          document.getElementById(
+            "color"
+          ).textContent = `${color1} → ${color2}`;
+        } else {
+          const color = randomColor();
+          document.body.style.background = color;
+          document.getElementById("color").textContent = color;
+        }
+      }
+
+      function randomColor() {
+        return (
+          "#" +
+          Math.floor(Math.random() * 16777215)
+            .toString(16)
+            .padStart(6, "0")
+        );
+      }
+
+      function toggleGradient() {
+        gradientMode = !gradientMode;
+        flip();
+      }
+    </script>
+  </body>
+</html>
