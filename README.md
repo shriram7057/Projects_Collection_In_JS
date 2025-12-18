@@ -1,28 +1,53 @@
-# ⚡ Top 10 JavaScript Projects (2025 Edition)
+ <div align="center" style="margin-top:0 px;">
+<img src="https://github.com/shriram7057/shriram7057/blob/main/Js.gif?raw=true" width="200">
+<h1 align="center">🟨 JavaScript Projects Collection</h1>
 
-A collection of beginner-to-intermediate JavaScript projects that demonstrate DOM manipulation, API integration, and modern UI interactivity.
+<p align="center">
+  A curated collection of <strong>JavaScript projects</strong> demonstrating
+  <strong>core web development concepts</strong>,
+  <strong>DOM manipulation</strong>,
+  and <strong>interactive user interfaces</strong>.
+</p>
 
-## 🚀 Projects
-1. 🕒 Digital Clock  
-2. 📋 To-Do List  
-3. 🧮 Calculator  
-4. 🌤 Weather App  
-5. ❓ Quiz App  
-6. ⌨️ Typing Speed Tester  
-7. 🧠 Memory Card Game  
-8. ⚖️ BMI Calculator  
-9. ⏳ Countdown Timer  
-10. 🎨 Color Flipper  
+<hr>
 
-## 🧰 Tech Stack
-- HTML5  
-- CSS3  
-- JavaScript (ES6+)
-- Optional: OpenWeather API for Weather App
+<h2>📂 Projects</h2>
 
-## ▶️ Run Locally
-Just open any `.html` file in your browser!
+<ul>
+  <li><strong>Calculator</strong> – Performs basic arithmetic operations</li>
+  <li><strong>Digital Clock</strong> – Displays real-time clock using JavaScript</li>
+  <li><strong>Form Validation</strong> – Validates user input in forms</li>
+  <li><strong>Guess The Number Game</strong> – Interactive number guessing game</li>
+  <li><strong>Password Generator</strong> – Generates secure random passwords</li>
+  <li><strong>Quiz App</strong> – Interactive quiz with score tracking</li>
+  <li><strong>To-Do List</strong> – Task management web application</li>
+  <li><strong>Weather App</strong> – Displays weather information using APIs</li>
+  <li><strong>Image Slider</strong> – Dynamic image carousel</li>
+  <li><strong>Portfolio Website</strong> – Personal portfolio built with JavaScript</li>
+</ul>
 
-Example:
-```bash
-open todo_list.html
+<hr>
+
+<h2>🛠️ Technologies Used</h2>
+
+<ul>
+  <li>JavaScript (ES6+)</li>
+  <li>HTML5</li>
+  <li>CSS3</li>
+  <li>DOM Manipulation</li>
+  <li>Browser APIs</li>
+</ul>
+
+<hr>
+
+<h2>▶️ How to Run</h2>
+
+<pre>
+Open index.html in your browser
+</pre>
+
+<hr>
+
+<p align="center">
+  ⭐ If you find these JavaScript projects useful, consider starring the repository!
+</p>
