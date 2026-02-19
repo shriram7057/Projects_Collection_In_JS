@@ -2,12 +2,8 @@
 <table border="1" cellpadding="12" cellspacing="0" width="100%" align="center">
   <tr>
     <td align="center">
-      <img 
-        src="https://github.com/shriram7057/shriram7057/blob/main/Js.gif?raw=true" 
-        width="200"
-        alt="JavaScript Animation"
-      />
-      <h1>🟨 JavaScript Projects Collection</h1>
+      <img src="https://skillicons.dev/icons?i=js" width="190"/>
+      <h1>🟨 JavaScript Projects Collection⚡</h1>
       <p>
         A curated collection of <b>JavaScript projects</b> demonstrating
         <b>core web development concepts</b>, <b>DOM manipulation</b>, and
